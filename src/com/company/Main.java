@@ -25,7 +25,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Merge Sort has completed in " + "seconds.");
+        System.out.print("Merge Sort has completed in " + duration + "seconds.");
     }
 
     public static void QuickSort(int [] array) {
@@ -35,7 +35,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Quick Sort has completed in " + "seconds.");
+        System.out.print("Quick Sort has completed in " + duration + "seconds.");
     }
 
     public static void Initialize(int [] smallArray, int [] mediumArray, int [] largeArray) {
