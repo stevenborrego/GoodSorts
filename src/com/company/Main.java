@@ -1,19 +1,41 @@
 package com.company;
 
+import jdk.vm.ci.meta.Local;
+
 import java.util.Random;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Main {
 
     public static void SelectionSort(int [] array) {
+        LocalDateTime start = LocalDateTime.now();
 
+
+        LocalDateTime end = LocalDateTime.now();
+        Duration duration = Duration.between(start, end);
+
+        System.out.print("Selection Sort has completed in " + duration + "seconds.");
     }
 
     public static void MergeSort(int [] array) {
+        LocalDateTime start = LocalDateTime.now();
 
+
+        LocalDateTime end = LocalDateTime.now();
+        Duration duration = Duration.between(start, end);
+
+        System.out.print("Merge Sort has completed in " + "seconds.");
     }
 
     public static void QuickSort(int [] array) {
+        LocalDateTime start = LocalDateTime.now();
 
+
+        LocalDateTime end = LocalDateTime.now();
+        Duration duration = Duration.between(start, end);
+
+        System.out.print("Quick Sort has completed in " + "seconds.");
     }
 
     public static void Initialize(int [] smallArray, int [] mediumArray, int [] largeArray) {
@@ -23,6 +45,8 @@ public class Main {
         // initializes arrays with random int 0-99
         for(int i = 0; i < 100; ++i){
            smallArray[i] = rand.nextInt(100);
+
+           System.out.print(smallArray[i] + "\n");
         }
         System.out.print("The Small array has been initialized with 100 integers.\n");
 
