@@ -42,8 +42,32 @@ public class Main {
         System.out.print("Merge Sort has completed in " + duration + "seconds.");
     }
 
+    public static int HoaresPartition(int [] array, int low, int high){
+        int pivot = array[low];
+        int i = low - 1, j = high + 1;
+
+        while (true) {
+
+            do {
+                i++;
+            }while(array[i] < pivot);
+
+            do{
+                j--;
+            }while (array[j] > pivot);
+
+            if(i >= j)
+                return j;
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+
     public static void QuickSort(int [] array) {
         LocalDateTime start = LocalDateTime.now();
+
+
 
 
         LocalDateTime end = LocalDateTime.now();
