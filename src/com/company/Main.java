@@ -64,9 +64,16 @@ public class Main {
         }
     }
 
-    public static void QuickSort(int [] array) {
+    public static void QuickSort(int [] array, int low, int high) {
         LocalDateTime start = LocalDateTime.now();
 
+        if(low < high){
+            int pivot = HoaresPartition(array,low,high);
+
+            QuickSort(array,low,pivot);
+            QuickSort(array,pivot + 1, high);
+
+        }
 
 
 
@@ -104,8 +111,11 @@ public class Main {
         System.out.print("Welcome to ASS\n");
 
         int [] smallArray = new int [1000];
+        int smallsize = smallArray.length;
         int [] mediumArray = new int [10000];
+        int mediumsize = mediumArray.length;
         int [] largeArray = new int [100000];
+        int largesize = largeArray.length;
 
         Initialize(smallArray, mediumArray, largeArray);
 
@@ -124,8 +134,8 @@ public class Main {
         Initialize(smallArray, mediumArray, largeArray);
 
         System.out.print("Now Performing Quick Sort\n");
-        QuickSort(smallArray);
-        QuickSort(mediumArray);
-        QuickSort(largeArray);
+        QuickSort(smallArray,0,smallsize - 1);
+        QuickSort(mediumArray,0,mediumsize - 1);
+        QuickSort(largeArray,0,largesize - 1);
     }
 }
