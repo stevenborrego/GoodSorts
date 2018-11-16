@@ -143,8 +143,8 @@ public class Main {
         MergeSort(largeArrayM);
 
         System.out.print("Now Performing Quick Sort\n");
-        QuickSort(smallArrayM);
-        QuickSort(mediumArrayM);
-        QuickSort(largeArrayM);
+        QuickSort(smallArrayQ);
+        QuickSort(mediumArrayQ);
+        QuickSort(largeArrayQ);
     }
 }
