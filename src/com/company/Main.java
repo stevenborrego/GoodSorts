@@ -75,6 +75,18 @@ public class Main {
         System.out.print("The Large array has been initialized with 100,000 randomized integers.\n");
     }
 
+    public static void CopyArray(int [] smallSource, int [] medSource, int [] largeSource, int [] smallDest, int [] medDest, int [] largeDest) {
+       for (int i = 0; i < 1000; ++i) {
+           smallDest[i] = smallSource[i];
+       }
+        for (int i = 0; i < 10000; ++i) {
+           medDest[i] = medSource[i];
+        }
+        for (int i = 0; i < 100000; ++i) {
+           largeDest[i] = largeSource[i];
+        }
+    }
+
     public static void main(String[] args) {
 
         System.out.print("Welcome to ASS\n");
@@ -83,25 +95,32 @@ public class Main {
         int [] mediumArray = new int [10000];
         int [] largeArray = new int [100000];
 
-        Initialize(smallArray, mediumArray, largeArray);
+        int [] smallArrayM = new int [1000];
+        int [] mediumArrayM = new int [10000];
+        int [] largeArrayM = new int [100000];
+
+        int [] smallArrayQ = new int [1000];
+        int [] mediumArrayQ = new int [10000];
+        int [] largeArrayQ = new int [100000];
+
+        Initialize(smallArray, mediumArray, largeArray); // selection sort
+        CopyArray(smallArray, mediumArray, largeArray, smallArrayM, mediumArrayM, largeArrayM); // Merge Sort
+        CopyArray(smallArray, mediumArray, largeArray, smallArrayQ, mediumArrayQ, largeArrayQ); // Quick Sort
+
 
         System.out.print("Now Performing Selection Sort\n");
         SelectionSort(smallArray);
         SelectionSort(mediumArray);
         SelectionSort(largeArray);
 
-        Initialize(smallArray, mediumArray, largeArray);
-
         System.out.print("Now Performing Merge Sort\n");
-        MergeSort(smallArray);
-        MergeSort(mediumArray);
-        MergeSort(largeArray);
-
-        Initialize(smallArray, mediumArray, largeArray);
+        MergeSort(smallArrayM);
+        MergeSort(mediumArrayM);
+        MergeSort(largeArrayM);
 
         System.out.print("Now Performing Quick Sort\n");
-        QuickSort(smallArray);
-        QuickSort(mediumArray);
-        QuickSort(largeArray);
+        QuickSort(smallArrayM);
+        QuickSort(mediumArrayM);
+        QuickSort(largeArrayM);
     }
 }
