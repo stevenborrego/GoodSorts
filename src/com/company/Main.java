@@ -29,7 +29,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Selection Sort has completed in " + duration + "seconds.");
+        System.out.print("Selection Sort has completed in " + duration + " seconds.\n");
     }
 
     public static void MergeSort(int [] array) {
@@ -39,7 +39,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Merge Sort has completed in " + duration + "seconds.");
+        System.out.print("Merge Sort has completed in " + duration + " seconds.\n");
     }
 
     public static int HoaresPartition(int [] array, int low, int high){
@@ -73,7 +73,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Quick Sort has completed in " + duration + "seconds.");
+        System.out.print("Quick Sort has completed in " + duration + " seconds.\n");
     }
 
     public static void Initialize(int [] smallArray, int [] mediumArray, int [] largeArray) {
@@ -81,33 +81,51 @@ public class Main {
         Random rand = new Random();
 
         // initializes arrays with random int 0-99
-        for(int i = 0; i < 100; ++i){
+        for(int i = 0; i < 1000; ++i){
            smallArray[i] = rand.nextInt(100);
 
-           System.out.print(smallArray[i] + "\n");
+           //System.out.print(smallArray[i] + "\n");
         }
-        System.out.print("The Small array has been initialized with 100 integers.\n");
-
-        for(int i = 0; i < 1000; ++i){
-            mediumArray[i] = rand.nextInt(100);
-        }
-        System.out.print("The Medium array has been initialized with 1,000 integers.\n");
+        System.out.print("The Small array has been initialized with 1,000 randomized integers.\n");
 
         for(int i = 0; i < 10000; ++i){
+            mediumArray[i] = rand.nextInt(100);
+        }
+        System.out.print("The Medium array has been initialized with 10,000 randomized integers.\n");
+
+        for(int i = 0; i < 100000; ++i){
             largeArray[i] = rand.nextInt(100);
         }
-        System.out.print("The Large array has been initialized with 10,000 integers.\n");
+        System.out.print("The Large array has been initialized with 100,000 randomized integers.\n");
     }
 
     public static void main(String[] args) {
-	// write your code here
 
         System.out.print("Welcome to ASS\n");
 
-        int [] smallArray = new int [100];
-        int [] mediumArray = new int [1000];
-        int [] largeArray = new int [10000];
+        int [] smallArray = new int [1000];
+        int [] mediumArray = new int [10000];
+        int [] largeArray = new int [100000];
 
         Initialize(smallArray, mediumArray, largeArray);
+
+        System.out.print("Now Performing Selection Sort\n");
+        SelectionSort(smallArray);
+        SelectionSort(mediumArray);
+        SelectionSort(largeArray);
+
+        Initialize(smallArray, mediumArray, largeArray);
+
+        System.out.print("Now Performing Merge Sort\n");
+        MergeSort(smallArray);
+        MergeSort(mediumArray);
+        MergeSort(largeArray);
+
+        Initialize(smallArray, mediumArray, largeArray);
+
+        System.out.print("Now Performing Quick Sort\n");
+        QuickSort(smallArray);
+        QuickSort(mediumArray);
+        QuickSort(largeArray);
     }
 }
