@@ -7,8 +7,15 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static int SMALL = 1000;
+    public static int SMALL2 = 2500;
+    public static int SMALL3 =  7500;
     public static int MEDIUM = 10000;
-    public static int LARGE = 100000;
+    public static int MEDIUM2 = 12500;
+    public static int MEDIUM3 = 15000;
+    public static int LARGE = 25000;
+    public static int LARGE2 = 50000;
+    public static int LARGE3 = 75000;
+    public static int LARGEST = 100000;
 
     public static void SelectionSort(int [] array) {
         LocalDateTime start = LocalDateTime.now();
@@ -33,7 +40,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Selection Sort has completed in " + duration + " seconds.\n");
+        System.out.print("Selection Sort has completed in " + duration + " seconds for array length: " + arrayLength + "\n");
     }
 
     public static void MergeSort(int [] array) {
@@ -80,62 +87,31 @@ public class Main {
         System.out.print("Quick Sort has completed in " + duration + " seconds.\n");
     }
 
-    public static void Initialize(int [] smallArray, int [] mediumArray, int [] largeArray) {
+    public static void InitializeRandom(int [] array, int size) {
 
         Random rand = new Random();
 
         // initializes arrays with random int 0-99
-        for(int i = 0; i < SMALL; ++i){
-           smallArray[i] = rand.nextInt(100);
-
-           //System.out.print(smallArray[i] + "\n");
+        for(int i = 0; i < size; ++i){
+           array[i] = rand.nextInt(100);
         }
-        System.out.print("The Small array has been initialized with 1,000 randomized integers.\n");
-
-        for(int i = 0; i < MEDIUM; ++i){
-            mediumArray[i] = rand.nextInt(100);
-        }
-        System.out.print("The Medium array has been initialized with 10,000 randomized integers.\n");
-
-        for(int i = 0; i < LARGE; ++i){
-            largeArray[i] = rand.nextInt(100);
-        }
-        System.out.print("The Large array has been initialized with 100,000 randomized integers.\n");
     }
 
-    public static void CopyArray(int [] smallSource, int [] medSource, int [] largeSource, int [] smallDest, int [] medDest, int [] largeDest) {
-       for (int i = 0; i < SMALL; ++i) {
-           smallDest[i] = smallSource[i];
+    public static void CopyArray(int [] sourceArray, int [] destArray, int size) {
+       for (int i = 0; i < size; ++i) {
+          destArray[i] = sourceArray[i];
        }
-        for (int i = 0; i < MEDIUM; ++i) {
-           medDest[i] = medSource[i];
-        }
-        for (int i = 0; i < LARGE; ++i) {
-           largeDest[i] = largeSource[i];
+    }
+
+    public static void InitializeSorted(int [] array, int size) {
+        for(int i = 0; i < size; ++i) {
+            array[i] = i;
         }
     }
 
-    public static void InitializeSorted(int [] smallArray, int [] medArray, int [] largeArray) {
-        for(int i = 0; i < SMALL; ++i) {
-            smallArray[i] = i;
-        }
-        for(int i = 0; i < MEDIUM; ++i) {
-            medArray[i] = i;
-        }
-        for(int i = 0; i < LARGE; ++i) {
-            largeArray[i] = i;
-        }
-    }
-
-    public static void InitializeReverseSorted(int [] smallArray, int [] medArray, int [] largeArray) {
-        for(int i = SMALL - 1; i > 0; --i) {
-            smallArray[i] = i;
-        }
-        for(int i = MEDIUM - 1; i > 0; --i) {
-            medArray[i] = i;
-        }
-        for(int i = LARGE - 1; i > 0; --i) {
-            largeArray[i] = i;
+    public static void InitializeReverseSorted(int [] array, int size) {
+        for(int i = size - 1; i > 0; --i) {
+            array[i] = i;
         }
     }
 
@@ -147,111 +123,344 @@ public class Main {
         // M = Merge Sort
         // Q = Quick Sort
 
+        // add intermediate arrays arrays arrays arrays arrays arrays arrays arrays arrays, automate array generation
+
         // random arrays
         int [] smallArrayRandomS = new int [SMALL];
+        int [] small2ArrayRandomS = new int [SMALL2];
+        int [] small3ArrayRandomS = new int [SMALL3];
         int [] mediumArrayRandomS = new int [MEDIUM];
+        int [] medium2ArrayRandomS = new int [MEDIUM2];
+        int [] medium3ArrayRandomS = new int [MEDIUM3];
         int [] largeArrayRandomS = new int [LARGE];
+        int [] large2ArrayRandomS = new int [LARGE2];
+        int [] large3ArrayRandomS = new int [LARGE3];
+        int [] largestArrayRandomS = new int [LARGEST];
 
         int [] smallArrayRandomM = new int [SMALL];
+        int [] small2ArrayRandomM = new int [SMALL2];
+        int [] small3ArrayRandomM = new int [SMALL3];
         int [] mediumArrayRandomM = new int [MEDIUM];
+        int [] medium2ArrayRandomM = new int [MEDIUM2];
+        int [] medium3ArrayRandomM = new int [MEDIUM3];
         int [] largeArrayRandomM = new int [LARGE];
+        int [] large2ArrayRandomM = new int [LARGE2];
+        int [] large3ArrayRandomM = new int [LARGE3];
+        int [] largestArrayRandomM = new int [LARGEST];
 
         int [] smallArrayRandomQ = new int [SMALL];
+        int [] small2ArrayRandomQ = new int [SMALL2];
+        int [] small3ArrayRandomQ = new int [SMALL3];
         int [] mediumArrayRandomQ = new int [MEDIUM];
+        int [] medium2ArrayRandomQ = new int [MEDIUM2];
+        int [] medium3ArrayRandomQ = new int [MEDIUM3];
         int [] largeArrayRandomQ = new int [LARGE];
+        int [] large2ArrayRandomQ = new int [LARGE2];
+        int [] large3ArrayRandomQ = new int [LARGE3];
+        int [] largestArrayRandomQ = new int [LARGEST];
 
 
         // sorted arrays
         int [] smallArraySortedS = new int [SMALL];
+        int [] small2ArraySortedS = new int [SMALL2];
+        int [] small3ArraySortedS = new int [SMALL3];
         int [] mediumArraySortedS = new int [MEDIUM];
+        int [] medium2ArraySortedS = new int [MEDIUM2];
+        int [] medium3ArraySortedS = new int [MEDIUM3];
         int [] largeArraySortedS = new int [LARGE];
+        int [] large2ArraySortedS = new int [LARGE2];
+        int [] large3ArraySortedS = new int [LARGE3];
+        int [] largestArraySortedS = new int [LARGEST];
 
         int [] smallArraySortedM = new int [SMALL];
+        int [] small2ArraySortedM = new int [SMALL2];
+        int [] small3ArraySortedM = new int [SMALL3];
         int [] mediumArraySortedM = new int [MEDIUM];
+        int [] medium2ArraySortedM = new int [MEDIUM2];
+        int [] medium3ArraySortedM = new int [MEDIUM3];
         int [] largeArraySortedM = new int [LARGE];
+        int [] large2ArraySortedM = new int [LARGE2];
+        int [] large3ArraySortedM = new int [LARGE3];
+        int [] largestArraySortedM = new int [LARGEST];
 
         int [] smallArraySortedQ = new int [SMALL];
+        int [] small2ArraySortedQ = new int [SMALL2];
+        int [] small3ArraySortedQ = new int [SMALL3];
         int [] mediumArraySortedQ = new int [MEDIUM];
+        int [] medium2ArraySortedQ = new int [MEDIUM2];
+        int [] medium3ArraySortedQ = new int [MEDIUM3];
         int [] largeArraySortedQ = new int [LARGE];
+        int [] large2ArraySortedQ = new int [LARGE2];
+        int [] large3ArraySortedQ = new int [LARGE3];
+        int [] largestArraySortedQ = new int [LARGEST];
 
         // reverse sorted arrays
         int [] smallArrayReverseS = new int [SMALL];
+        int [] small2ArrayReverseS = new int [SMALL2];
+        int [] small3ArrayReverseS = new int [SMALL3];
         int [] mediumArrayReverseS = new int [MEDIUM];
+        int [] medium2ArrayReverseS = new int [MEDIUM2];
+        int [] medium3ArrayReverseS = new int [MEDIUM3];
         int [] largeArrayReverseS = new int [LARGE];
+        int [] large2ArrayReverseS = new int [LARGE2];
+        int [] large3ArrayReverseS = new int [LARGE3];
+        int [] largestArrayReverseS = new int [LARGEST];
 
         int [] smallArrayReverseM = new int [SMALL];
+        int [] small2ArrayReverseM = new int [SMALL2];
+        int [] small3ArrayReverseM = new int [SMALL3];
         int [] mediumArrayReverseM = new int [MEDIUM];
+        int [] medium2ArrayReverseM = new int [MEDIUM2];
+        int [] medium3ArrayReverseM = new int [MEDIUM3];
         int [] largeArrayReverseM = new int [LARGE];
+        int [] large2ArrayReverseM = new int [LARGE2];
+        int [] large3ArrayReverseM = new int [LARGE3];
+        int [] largestArrayReverseM = new int [LARGEST];
 
         int [] smallArrayReverseQ = new int [SMALL];
+        int [] small2ArrayReverseQ = new int [SMALL2];
+        int [] small3ArrayReverseQ = new int [SMALL3];
         int [] mediumArrayReverseQ = new int [MEDIUM];
+        int [] medium2ArrayReverseQ = new int [MEDIUM2];
+        int [] medium3ArrayReverseQ = new int [MEDIUM3];
         int [] largeArrayReverseQ = new int [LARGE];
+        int [] large2ArrayReverseQ = new int [LARGE2];
+        int [] large3ArrayReverseQ = new int [LARGE3];
+        int [] largestArrayReverseQ = new int [LARGEST];
 
 
         // random
-        Initialize(smallArrayRandomS, mediumArrayRandomS, largeArrayRandomS); // selection sort
-        CopyArray(smallArrayRandomS, mediumArrayRandomS, largeArrayRandomS, smallArrayRandomM, mediumArrayRandomM, largeArrayRandomM); // Merge Sort
-        CopyArray(smallArrayRandomS, mediumArrayRandomS, largeArrayRandomS, smallArrayRandomQ, mediumArrayRandomQ, largeArrayRandomQ); // Quick Sort
+        InitializeRandom(smallArrayRandomS, SMALL); // selection sort
+        InitializeRandom(small2ArrayRandomS, SMALL2);
+        InitializeRandom(small3ArrayRandomS, SMALL3);
+
+        InitializeRandom(mediumArrayRandomS, MEDIUM);
+        InitializeRandom(medium2ArrayRandomS, MEDIUM2);
+        InitializeRandom(medium3ArrayRandomS, MEDIUM3);
+
+        InitializeRandom(largeArrayRandomS, LARGE);
+        InitializeRandom(large2ArrayRandomS, LARGE2);
+        InitializeRandom(large3ArrayRandomS, LARGE3);
+        InitializeRandom(largestArrayRandomS, LARGEST);
+
+        CopyArray(smallArrayRandomS, smallArrayRandomM, SMALL); // Merge Sort
+        CopyArray(small2ArrayRandomS, small2ArrayRandomM, SMALL2);
+        CopyArray(small3ArrayRandomS, small3ArrayRandomM, SMALL3);
+
+        CopyArray(mediumArrayRandomS, mediumArrayRandomM, MEDIUM);
+        CopyArray(medium2ArrayRandomS, medium2ArrayRandomM, MEDIUM2);
+        CopyArray(medium3ArrayRandomS, medium3ArrayRandomM, MEDIUM3);
+
+        CopyArray(largeArrayRandomS, largeArrayRandomM, LARGE);
+        CopyArray(large2ArrayRandomS, large2ArrayRandomM, LARGE2);
+        CopyArray(large3ArrayRandomS, large3ArrayRandomM, LARGE3);
+        CopyArray(largestArrayRandomS, largestArrayRandomM, LARGEST);
+
+        CopyArray(smallArrayRandomS, smallArrayRandomQ, SMALL); // Quick Sort
+        CopyArray(small2ArrayRandomS, small2ArrayRandomQ, SMALL2);
+        CopyArray(small3ArrayRandomS, small3ArrayRandomQ, SMALL3);
+
+        CopyArray(mediumArrayRandomS, mediumArrayRandomQ, MEDIUM);
+        CopyArray(medium2ArrayRandomS, medium2ArrayRandomQ, MEDIUM2);
+        CopyArray(medium3ArrayRandomS, medium3ArrayRandomQ, MEDIUM3);
+
+        CopyArray(largeArrayRandomS, largeArrayRandomQ, LARGE);
+        CopyArray(large2ArrayRandomS, large2ArrayRandomQ, LARGE2);
+        CopyArray(large3ArrayRandomS, large3ArrayRandomQ, LARGE3);
+        CopyArray(largestArrayRandomS, largestArrayRandomQ, LARGEST);
 
         // sorted
-        InitializeSorted(smallArraySortedS, mediumArraySortedS, largeArraySortedS);
-        CopyArray(smallArraySortedS, mediumArraySortedS, largeArraySortedS, smallArraySortedM, mediumArraySortedM, largeArraySortedM);
-        CopyArray(smallArraySortedS, mediumArraySortedS, largeArraySortedS, smallArraySortedQ, mediumArraySortedQ, largeArraySortedQ);
+        InitializeSorted(smallArraySortedS, SMALL); // selection sort
+        InitializeSorted(small2ArraySortedS, SMALL2);
+        InitializeSorted(small3ArraySortedS, SMALL3);
+
+        InitializeSorted(mediumArraySortedS, MEDIUM);
+        InitializeSorted(medium2ArraySortedS, MEDIUM2);
+        InitializeSorted(medium3ArraySortedS, MEDIUM3);
+
+        InitializeSorted(largeArraySortedS, LARGE);
+        InitializeSorted(large2ArraySortedS, LARGE2);
+        InitializeSorted(large3ArraySortedS, LARGE3);
+        InitializeSorted(largestArraySortedS, LARGEST);
+
+        InitializeSorted(smallArraySortedM, SMALL); // merge sort
+        InitializeSorted(small2ArraySortedM, SMALL2);
+        InitializeSorted(small3ArraySortedM, SMALL3);
+
+        InitializeSorted(mediumArraySortedM, MEDIUM);
+        InitializeSorted(medium2ArraySortedM, MEDIUM2);
+        InitializeSorted(medium3ArraySortedM, MEDIUM3);
+
+        InitializeSorted(largeArraySortedM, LARGE);
+        InitializeSorted(large2ArraySortedM, LARGE2);
+        InitializeSorted(large3ArraySortedM, LARGE3);
+        InitializeSorted(largestArraySortedM, LARGEST);
+
+        InitializeSorted(smallArraySortedQ, SMALL); // quick sort
+        InitializeSorted(small2ArraySortedQ, SMALL2);
+        InitializeSorted(small3ArraySortedQ, SMALL3);
+
+        InitializeSorted(mediumArraySortedQ, MEDIUM);
+        InitializeSorted(medium2ArraySortedQ, MEDIUM2);
+        InitializeSorted(medium3ArraySortedQ, MEDIUM3);
+
+        InitializeSorted(largeArraySortedQ, LARGE);
+        InitializeSorted(large2ArraySortedQ, LARGE2);
+        InitializeSorted(large3ArraySortedQ, LARGE3);
+        InitializeSorted(largestArraySortedQ, LARGEST);
 
         // reverse sorted
-        InitializeReverseSorted(smallArrayReverseS, mediumArrayReverseS, largeArrayReverseS);
-        CopyArray(smallArrayReverseS, mediumArrayReverseS, largeArrayReverseS, smallArrayReverseM, mediumArrayReverseM, largeArrayReverseM);
-        CopyArray(smallArrayReverseS, mediumArrayReverseS, largeArrayReverseS, smallArrayReverseQ, mediumArrayReverseQ, largeArrayReverseQ);
+        InitializeReverseSorted(smallArrayReverseS, SMALL); // selection sort
+        InitializeReverseSorted(small2ArrayReverseS, SMALL2);
+        InitializeReverseSorted(small3ArrayReverseS, SMALL3);
+
+        InitializeReverseSorted(mediumArrayReverseS, MEDIUM);
+        InitializeReverseSorted(medium2ArrayReverseS, MEDIUM2);
+        InitializeReverseSorted(medium3ArrayReverseS, MEDIUM3);
+
+        InitializeReverseSorted(largeArrayReverseS, LARGE);
+        InitializeReverseSorted(large2ArrayReverseS, LARGE2);
+        InitializeReverseSorted(large3ArrayReverseS, LARGE3);
+        InitializeReverseSorted(largestArrayReverseS, LARGEST);
+
+        InitializeReverseSorted(smallArrayReverseM, SMALL); // merge sort
+        InitializeReverseSorted(small2ArrayReverseM, SMALL2);
+        InitializeReverseSorted(small3ArrayReverseM, SMALL3);
+
+        InitializeReverseSorted(mediumArrayReverseM, MEDIUM);
+        InitializeReverseSorted(medium2ArrayReverseM, MEDIUM2);
+        InitializeReverseSorted(medium3ArrayReverseM, MEDIUM3);
+
+        InitializeReverseSorted(largeArrayReverseM, LARGE);
+        InitializeReverseSorted(large2ArrayReverseM, LARGE2);
+        InitializeReverseSorted(large3ArrayReverseM, LARGE3);
+        InitializeReverseSorted(largestArrayReverseM, LARGEST);
+
+        InitializeReverseSorted(smallArrayReverseQ, SMALL); // quick sort
+        InitializeReverseSorted(small2ArrayReverseQ, SMALL2);
+        InitializeReverseSorted(small3ArrayReverseQ, SMALL3);
+
+        InitializeReverseSorted(mediumArrayReverseQ, MEDIUM);
+        InitializeReverseSorted(medium2ArrayReverseQ, MEDIUM2);
+        InitializeReverseSorted(medium3ArrayReverseQ, MEDIUM3);
+
+        InitializeReverseSorted(largeArrayReverseQ, LARGE);
+        InitializeReverseSorted(large2ArrayReverseQ, LARGE2);
+        InitializeReverseSorted(large3ArrayReverseQ, LARGE3);
+        InitializeReverseSorted(largestArrayReverseQ, LARGEST);
 
         // let the sorting begin!!
 
         // Random
-        System.out.print("Now Performing Selection Sort on Random Input\n");
+        System.out.print("\nNow Performing Selection Sort on Random Input\n");
         SelectionSort(smallArrayRandomS);
+        SelectionSort(small2ArrayRandomS);
+        SelectionSort(small3ArrayRandomS);
         SelectionSort(mediumArrayRandomS);
+        SelectionSort(medium2ArrayRandomS);
+        SelectionSort(medium3ArrayRandomS);
         SelectionSort(largeArrayRandomS);
+        SelectionSort(large2ArrayRandomS);
+        SelectionSort(large3ArrayRandomS);
+        SelectionSort(largestArrayRandomS);
 
-        System.out.print("Now Performing Merge Sort on Random Input\n");
+        System.out.print("\nNow Performing Merge Sort on Random Input\n");
         MergeSort(smallArrayRandomM);
+        MergeSort(small2ArrayRandomM);
+        MergeSort(small3ArrayRandomM);
         MergeSort(mediumArrayRandomM);
+        MergeSort(medium2ArrayRandomM);
+        MergeSort(medium3ArrayRandomM);
         MergeSort(largeArrayRandomM);
+        MergeSort(large2ArrayRandomM);
+        MergeSort(large3ArrayRandomM);
+        MergeSort(largestArrayRandomM);
 
-        System.out.print("Now Performing Quick Sort on Random Input\n");
+        System.out.print("\nNow Performing Quick Sort on Random Input\n");
         QuickSort(smallArrayRandomQ);
+        QuickSort(small2ArrayRandomQ);
+        QuickSort(small3ArrayRandomQ);
         QuickSort(mediumArrayRandomQ);
+        QuickSort(medium2ArrayRandomQ);
+        QuickSort(medium3ArrayRandomQ);
         QuickSort(largeArrayRandomQ);
+        QuickSort(large2ArrayRandomQ);
+        QuickSort(large3ArrayRandomQ);
+        QuickSort(largestArrayRandomQ);
 
         // Sorted
-        System.out.print("Now Performing Selection Sort on Sorted Input\n");
+        System.out.print("\nNow Performing Selection Sort on Sorted Input\n");
         SelectionSort(smallArraySortedS);
+        SelectionSort(small2ArraySortedS);
+        SelectionSort(small3ArraySortedS);
         SelectionSort(mediumArraySortedS);
+        SelectionSort(medium2ArraySortedS);
+        SelectionSort(medium3ArraySortedS);
         SelectionSort(largeArraySortedS);
+        SelectionSort(large2ArraySortedS);
+        SelectionSort(large3ArraySortedS);
+        SelectionSort(largestArraySortedS);
 
-        System.out.print("Now Performing Merge Sort on Sorted Input\n");
+        System.out.print("\nNow Performing Merge Sort on Sorted Input\n");
         MergeSort(smallArraySortedM);
+        MergeSort(small2ArraySortedM);
+        MergeSort(small3ArraySortedM);
         MergeSort(mediumArraySortedM);
+        MergeSort(medium2ArraySortedM);
+        MergeSort(medium3ArraySortedM);
         MergeSort(largeArraySortedM);
+        MergeSort(large2ArraySortedM);
+        MergeSort(large3ArraySortedM);
+        MergeSort(largestArraySortedM);
 
-        System.out.print("Now Performing Quick Sort on Sorted Input\n");
+        System.out.print("\nNow Performing Quick Sort on Sorted Input\n");
         QuickSort(smallArraySortedQ);
+        QuickSort(small2ArraySortedQ);
+        QuickSort(small3ArraySortedQ);
         QuickSort(mediumArraySortedQ);
+        QuickSort(medium2ArraySortedQ);
+        QuickSort(medium3ArraySortedQ);
         QuickSort(largeArraySortedQ);
+        QuickSort(large2ArraySortedQ);
+        QuickSort(large3ArraySortedQ);
+        QuickSort(largestArraySortedQ);
 
 
         // Reverse sorted
-        System.out.print("Now Performing Selection Sort on Reverse Sorted Input\n");
+        System.out.print("\nNow Performing Selection Sort on Reverse Sorted Input\n");
         SelectionSort(smallArrayReverseS);
+        SelectionSort(small2ArrayReverseS);
+        SelectionSort(small3ArrayReverseS);
         SelectionSort(mediumArrayReverseS);
+        SelectionSort(medium2ArrayReverseS);
+        SelectionSort(medium3ArrayReverseS);
         SelectionSort(largeArrayReverseS);
+        SelectionSort(large2ArrayReverseS);
+        SelectionSort(large3ArrayReverseS);
+        SelectionSort(largestArrayReverseS);
 
-        System.out.print("Now Performing Merge Sort on Reverse Sorted Input\n");
+        System.out.print("\nNow Performing Merge Sort on Reverse Sorted Input\n");
         MergeSort(smallArrayReverseM);
+        MergeSort(small2ArrayReverseM);
+        MergeSort(small3ArrayReverseM);
         MergeSort(mediumArrayReverseM);
+        MergeSort(medium2ArrayReverseM);
+        MergeSort(medium3ArrayReverseM);
         MergeSort(largeArrayReverseM);
+        MergeSort(large2ArrayReverseM);
+        MergeSort(large3ArrayReverseM);
+        MergeSort(largestArrayReverseM);
 
-        System.out.print("Now Performing Quick Sort on Reverse Sorted Input\n");
+        System.out.print("\nNow Performing Quick Sort on Reverse Sorted Input\n");
         QuickSort(smallArrayReverseQ);
+        QuickSort(small2ArrayReverseQ);
+        QuickSort(small3ArrayReverseQ);
         QuickSort(mediumArrayReverseQ);
+        QuickSort(medium2ArrayReverseQ);
+        QuickSort(medium3ArrayReverseQ);
         QuickSort(largeArrayReverseQ);
+        QuickSort(large2ArrayReverseQ);
+        QuickSort(large3ArrayReverseQ);
+        QuickSort(largestArrayReverseQ);
     }
 }
