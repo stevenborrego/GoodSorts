@@ -182,9 +182,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
-        System.out.print("Welcome to ASS\n");
-
         // S = Selection Sort
         // M = Merge Sort
         // Q = Quick Sort
