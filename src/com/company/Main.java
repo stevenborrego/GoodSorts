@@ -18,9 +18,9 @@ public class Main {
     public static int LARGEST = 100000;
 
     public static void SelectionSort(int [] array) {
-        LocalDateTime start = LocalDateTime.now();
-
         int arrayLength = array.length;
+
+        LocalDateTime start = LocalDateTime.now();
 
         for (int i = 0; i < arrayLength - 1; i++) {
 
@@ -44,6 +44,8 @@ public class Main {
     }
 
     public static void MergeSort(int [] array, int left, int right) {
+        int arrayLength = array.length;
+
         LocalDateTime start = LocalDateTime.now();
 
         Sort(array, left, right);
@@ -51,7 +53,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Merge Sort has completed in " + duration.toMillis() + " milliseconds.\n");
+        System.out.print("Merge Sort has completed in " + duration.toMillis() + " milliseconds for array length: " + arrayLength + "\n");
     }
 
     public static void Merge(int [] array, int left, int middle, int right) {
@@ -133,6 +135,8 @@ public class Main {
     }
 
     public static void QuickSort(int [] array, int low, int high) {
+        int arrayLength = array.length;
+
         LocalDateTime start = LocalDateTime.now();
 
         QuickSortRecursive(array, low, high);
@@ -140,7 +144,7 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Quick Sort has completed in " + duration.toMillis() + " milliseconds.\n");
+        System.out.print("Quick Sort has completed in " + duration.toMillis() + " milliseconds for array length: " + arrayLength + "\n");
     }
 
     public static void QuickSortRecursive(int [] array, int low, int high) {
