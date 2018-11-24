@@ -40,20 +40,77 @@ public class Main {
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Selection Sort has completed in " + duration + " seconds for array length: " + arrayLength + "\n");
+        System.out.print("Selection Sort has completed in " + duration.toMillis() + " milliseconds for array length: " + arrayLength + "\n");
     }
 
-    public static void MergeSort(int [] array) {
+    public static void MergeSort(int [] array, int left, int right) {
         LocalDateTime start = LocalDateTime.now();
 
+        Sort(array, left, right);
 
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Merge Sort has completed in " + duration + " seconds.\n");
+        System.out.print("Merge Sort has completed in " + duration.toMillis() + " milliseconds.\n");
     }
 
-    public static int HoaresPartition(int [] array, int low, int high){
+    public static void Merge(int [] array, int left, int middle, int right) {
+        int n1 = middle - left + 1;
+        int n2 = right - middle;
+
+        int leftArr[] = new int[n1];
+        int rightArr[] = new int[n2];
+
+        for(int i = 0; i < n1; ++i) {
+            leftArr[i] = array[left + i];
+        }
+        for(int j = 0; j < n2; ++j) {
+           rightArr[j] = array[middle + 1 + j];
+        }
+
+        int i = 0;
+        int j = 0;
+
+        int k = left;
+
+        while(i < n1 && j < n2) {
+            if(leftArr[i] <= rightArr[j]) {
+                array[k] = leftArr[i];
+                ++i;
+            }
+            else {
+                array[k] = rightArr[j];
+                ++j;
+            }
+            ++k;
+        }
+
+        while(i < n1) {
+            array[k] = leftArr[i];
+            ++i;
+            ++k;
+        }
+        while(j < n2) {
+            array[k] = rightArr[j];
+            ++j;
+            ++k;
+        }
+
+    }
+
+    public static void Sort(int [] array, int left, int right) {
+        if(left < right) {
+            int middle = (left + right) / 2;
+
+            Sort(array, left, middle);
+            Sort(array, middle + 1, right);
+
+            Merge(array, left, middle, right);
+        }
+
+    }
+
+    public static int HoarePartition(int [] array, int low, int high){
         int pivot = array[low];
         int i = low - 1, j = high + 1;
 
@@ -75,16 +132,25 @@ public class Main {
         }
     }
 
-    public static void QuickSort(int [] array) {
+    public static void QuickSort(int [] array, int low, int high) {
         LocalDateTime start = LocalDateTime.now();
 
-
-
+        QuickSortRecursive(array, low, high);
 
         LocalDateTime end = LocalDateTime.now();
         Duration duration = Duration.between(start, end);
 
-        System.out.print("Quick Sort has completed in " + duration + " seconds.\n");
+        System.out.print("Quick Sort has completed in " + duration.toMillis() + " milliseconds.\n");
+    }
+
+    public static void QuickSortRecursive(int [] array, int low, int high) {
+
+        if(low < high) {
+            int pivot = HoarePartition(array, low, high);
+
+            QuickSortRecursive(array, low, pivot - 1);
+            QuickSortRecursive(array, pivot + 1, high);
+        }
     }
 
     public static void InitializeRandom(int [] array, int size) {
@@ -365,28 +431,28 @@ public class Main {
         SelectionSort(largestArrayRandomS);
 
         System.out.print("\nNow Performing Merge Sort on Random Input\n");
-        MergeSort(smallArrayRandomM);
-        MergeSort(small2ArrayRandomM);
-        MergeSort(small3ArrayRandomM);
-        MergeSort(mediumArrayRandomM);
-        MergeSort(medium2ArrayRandomM);
-        MergeSort(medium3ArrayRandomM);
-        MergeSort(largeArrayRandomM);
-        MergeSort(large2ArrayRandomM);
-        MergeSort(large3ArrayRandomM);
-        MergeSort(largestArrayRandomM);
+        MergeSort(smallArrayRandomM, 0, SMALL - 1);
+        MergeSort(small2ArrayRandomM, 0, SMALL2 - 1);
+        MergeSort(small3ArrayRandomM, 0, SMALL3 - 1);
+        MergeSort(mediumArrayRandomM, 0, MEDIUM - 1);
+        MergeSort(medium2ArrayRandomM, 0, MEDIUM2 - 1);
+        MergeSort(medium3ArrayRandomM, 0, MEDIUM3 - 1);
+        MergeSort(largeArrayRandomM, 0, LARGE - 1);
+        MergeSort(large2ArrayRandomM, 0, LARGE2 - 1);
+        MergeSort(large3ArrayRandomM, 0, LARGE3 - 1);
+        MergeSort(largestArrayRandomM, 0, LARGEST - 1);
 
         System.out.print("\nNow Performing Quick Sort on Random Input\n");
-        QuickSort(smallArrayRandomQ);
-        QuickSort(small2ArrayRandomQ);
-        QuickSort(small3ArrayRandomQ);
-        QuickSort(mediumArrayRandomQ);
-        QuickSort(medium2ArrayRandomQ);
-        QuickSort(medium3ArrayRandomQ);
-        QuickSort(largeArrayRandomQ);
-        QuickSort(large2ArrayRandomQ);
-        QuickSort(large3ArrayRandomQ);
-        QuickSort(largestArrayRandomQ);
+        QuickSort(smallArrayRandomQ, 0, SMALL - 1);
+        QuickSort(small2ArrayRandomQ, 0, SMALL2 -1);
+        QuickSort(small3ArrayRandomQ, 0, SMALL3 - 1);
+        QuickSort(mediumArrayRandomQ, 0, MEDIUM -1);
+        QuickSort(medium2ArrayRandomQ, 0, MEDIUM2 -1);
+        QuickSort(medium3ArrayRandomQ, 0, MEDIUM3 - 1);
+        QuickSort(largeArrayRandomQ, 0, LARGE -1);
+        QuickSort(large2ArrayRandomQ, 0, LARGE2 - 1);
+        QuickSort(large3ArrayRandomQ, 0, LARGE3 - 1);
+        QuickSort(largestArrayRandomQ, 0, LARGEST -1);
 
         // Sorted
         System.out.print("\nNow Performing Selection Sort on Sorted Input\n");
@@ -402,28 +468,30 @@ public class Main {
         SelectionSort(largestArraySortedS);
 
         System.out.print("\nNow Performing Merge Sort on Sorted Input\n");
-        MergeSort(smallArraySortedM);
-        MergeSort(small2ArraySortedM);
-        MergeSort(small3ArraySortedM);
-        MergeSort(mediumArraySortedM);
-        MergeSort(medium2ArraySortedM);
-        MergeSort(medium3ArraySortedM);
-        MergeSort(largeArraySortedM);
-        MergeSort(large2ArraySortedM);
-        MergeSort(large3ArraySortedM);
-        MergeSort(largestArraySortedM);
+        MergeSort(smallArraySortedM, 0, SMALL - 1);
+        MergeSort(small2ArraySortedM, 0, SMALL2 - 1);
+        MergeSort(small3ArraySortedM, 0, SMALL3 - 1);
+        MergeSort(mediumArraySortedM, 0, MEDIUM - 1);
+        MergeSort(medium2ArraySortedM, 0, MEDIUM2 - 1);
+        MergeSort(medium3ArraySortedM, 0, MEDIUM3 - 1);
+        MergeSort(largeArraySortedM, 0, LARGE - 1);
+        MergeSort(large2ArraySortedM, 0, LARGE2 - 1);
+        MergeSort(large3ArraySortedM, 0, LARGE3 - 1);
+        MergeSort(largestArraySortedM, 0, LARGEST - 1);
 
         System.out.print("\nNow Performing Quick Sort on Sorted Input\n");
-        QuickSort(smallArraySortedQ);
-        QuickSort(small2ArraySortedQ);
-        QuickSort(small3ArraySortedQ);
-        QuickSort(mediumArraySortedQ);
-        QuickSort(medium2ArraySortedQ);
-        QuickSort(medium3ArraySortedQ);
-        QuickSort(largeArraySortedQ);
-        QuickSort(large2ArraySortedQ);
-        QuickSort(large3ArraySortedQ);
-        QuickSort(largestArraySortedQ);
+        /*
+        QuickSort(smallArraySortedQ, 0, SMALL - 1);
+        QuickSort(small2ArraySortedQ, 0, SMALL2 - 1);
+        QuickSort(small3ArraySortedQ, 0, SMALL3 - 1);
+        QuickSort(mediumArraySortedQ, 0, MEDIUM - 1);
+        QuickSort(medium2ArraySortedQ, 0, MEDIUM2 - 1);
+        QuickSort(medium3ArraySortedQ, 0, MEDIUM3 - 1);
+        QuickSort(largeArraySortedQ, 0, LARGE - 1);
+        QuickSort(large2ArraySortedQ, 0, LARGE2 - 1);
+        QuickSort(large3ArraySortedQ, 0, LARGE3 - 1);
+        QuickSort(largestArraySortedQ, 0, LARGEST - 1);
+        */
 
 
         // Reverse sorted
@@ -440,27 +508,29 @@ public class Main {
         SelectionSort(largestArrayReverseS);
 
         System.out.print("\nNow Performing Merge Sort on Reverse Sorted Input\n");
-        MergeSort(smallArrayReverseM);
-        MergeSort(small2ArrayReverseM);
-        MergeSort(small3ArrayReverseM);
-        MergeSort(mediumArrayReverseM);
-        MergeSort(medium2ArrayReverseM);
-        MergeSort(medium3ArrayReverseM);
-        MergeSort(largeArrayReverseM);
-        MergeSort(large2ArrayReverseM);
-        MergeSort(large3ArrayReverseM);
-        MergeSort(largestArrayReverseM);
+        MergeSort(smallArrayReverseM, 0, SMALL - 1);
+        MergeSort(small2ArrayReverseM, 0, SMALL2 - 1);
+        MergeSort(small3ArrayReverseM, 0, SMALL3 - 1);
+        MergeSort(mediumArrayReverseM, 0, MEDIUM - 1);
+        MergeSort(medium2ArrayReverseM, 0, MEDIUM2 - 1);
+        MergeSort(medium3ArrayReverseM, 0, MEDIUM3 - 1);
+        MergeSort(largeArrayReverseM, 0, LARGE - 1);
+        MergeSort(large2ArrayReverseM, 0,LARGE2 - 1);
+        MergeSort(large3ArrayReverseM, 0, LARGE3 - 1);
+        MergeSort(largestArrayReverseM, 0, LARGEST - 1);
 
         System.out.print("\nNow Performing Quick Sort on Reverse Sorted Input\n");
-        QuickSort(smallArrayReverseQ);
-        QuickSort(small2ArrayReverseQ);
-        QuickSort(small3ArrayReverseQ);
-        QuickSort(mediumArrayReverseQ);
-        QuickSort(medium2ArrayReverseQ);
-        QuickSort(medium3ArrayReverseQ);
-        QuickSort(largeArrayReverseQ);
-        QuickSort(large2ArrayReverseQ);
-        QuickSort(large3ArrayReverseQ);
-        QuickSort(largestArrayReverseQ);
+        /*
+        QuickSort(smallArrayReverseQ, 0, SMALL - 1);
+        QuickSort(small2ArrayReverseQ, 0, SMALL2 - 1);
+        QuickSort(small3ArrayReverseQ, 0, SMALL3 - 1);
+        QuickSort(mediumArrayReverseQ, 0, MEDIUM - 1);
+        QuickSort(medium2ArrayReverseQ, 0, MEDIUM2 - 1);
+        QuickSort(medium3ArrayReverseQ, 0, MEDIUM3 - 1);
+        QuickSort(largeArrayReverseQ, 0, LARGE - 1);
+        QuickSort(large2ArrayReverseQ, 0, LARGE2 - 1);
+        QuickSort(large3ArrayReverseQ, 0, LARGE3 - 1);
+        QuickSort(largestArrayReverseQ, 0, LARGEST - 1);
+        */
     }
 }
